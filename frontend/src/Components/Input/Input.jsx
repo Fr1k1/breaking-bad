@@ -7,15 +7,15 @@ const Input = ({
   defaultValue,
 }) => {
   return (
-    <div className="input-wrapper">
-      {label && <label className="label-main">{label}</label>}
+    <div className="flex gap-2 flex-col">
+      {label && <label className="">{label}</label>}
 
       <input
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={defaultValue}
-        className="flex bg-green-500"
+        className="flex bg-white-200 rounded-lg p-1"
       />
     </div>
   );
