@@ -1,9 +1,10 @@
-import "./App.scss";
+import Input from "./Components/Input/Input";
+import "./index.css";
 
 function App() {
   return (
     <>
-      <h1>Test content</h1>
+      <Input />
     </>
   );
 }
