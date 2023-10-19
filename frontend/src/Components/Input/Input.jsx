@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
+
 const Input = ({
   placeholder,
   label,
   type = "text",
   onChange,
-  isDisabledDefault,
+  //isDisabledDefault,
   defaultValue,
 }) => {
   return (
@@ -19,6 +21,15 @@ const Input = ({
       />
     </div>
   );
+};
+
+Input.propTypes = {
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.oneOf(["text", "email", "password"]),
+  onChange: PropTypes.func,
+  //isDisabledDefault: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 export default Input;

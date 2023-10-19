@@ -1,3 +1,4 @@
+import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
 
 const Login = () => {
@@ -7,7 +8,7 @@ const Login = () => {
         <Input label={"Username"} />
         <Input label={"Password"} />
         <div className="flex justify-center items-start">
-          <button className="p-2 bg-purple-300">Click me</button>
+          <Button>Login</Button>
         </div>
       </form>
     </div>

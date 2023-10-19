@@ -10,11 +10,11 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link to="/registration">Registration</Link>
+            <Link to="/register">Registration</Link>
           </li>
 
           <li>
-            <Link to="/homepage">Homepage</Link>
+            <Link to="/">Homepage</Link>
           </li>
 
           <li>
