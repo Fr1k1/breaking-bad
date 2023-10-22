@@ -2,7 +2,10 @@ import PropTypes from "prop-types";
 
 const Button = ({ children }) => {
   return (
-    <button className="p-2 bg-purple-300 rounded-md w-fit" type="submit">
+    <button
+      className="px-4 py-2 bg-blue-700 rounded-md w-fit text-white"
+      type="submit"
+    >
       {children}
     </button>
   );
