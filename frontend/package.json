@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.10.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.17.0",
@@ -27,7 +28,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.31",
     "sass": "^1.69.4",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.3.6",
     "vite": "^4.4.5"
   }
 }
