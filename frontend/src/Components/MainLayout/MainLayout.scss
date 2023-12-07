@@ -3,7 +3,7 @@
   width: 100%;
   position: relative;
   padding: 24px;
-  background-color: black;
+  background-color: white;
   height: 100vh;
 }
 
@@ -19,5 +19,5 @@
 .main-section {
   display: flex;
   flex-direction: column;
-  max-height: 1fr;
+  height: 100%;
 }

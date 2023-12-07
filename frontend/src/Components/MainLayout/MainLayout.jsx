@@ -7,7 +7,6 @@ const MainLayout = () => {
     <div className="dashboard-layout-wrapper">
       <div className="main-section">
         <Navbar />
-
         <div className="content-wrapper">
           <Outlet />
         </div>
