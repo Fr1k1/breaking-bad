@@ -21,6 +21,16 @@ async function login(username, password = "") {
   }
 }
 
+async function signup(username, password, admin) {
+  try {
+    if(admin == undefined) admin = 0;
+    return repo.createUser(username, password, admin)
+  } catch(error) {
+    return {error: "Something went wrong"}
+  }
+}
+
 module.exports = {
-  login
+  login,
+  signup
 }

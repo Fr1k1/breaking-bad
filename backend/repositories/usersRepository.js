@@ -19,6 +19,15 @@ async function getUserByUsername(username) {
   }
 }
 
+async function getUserById(id) {
+  const getUser = db.prepare('SELECT * FROM users WHERE id = ?');
+  try {
+    return getUser.get(id)
+  } catch (error) {
+    return undefined
+  }
+}
+
 async function getUserByPassword(password) {
   const getUser = db.prepare('SELECT * FROM users WHERE password = ?');
   try {
@@ -31,9 +40,10 @@ async function getUserByPassword(password) {
 async function createUser(username, password, admin = 0) {
   const createUser = db.prepare('INSERT INTO users (username, password, admin) VALUES (?, ?, ?)');
   try {
-    return createUser.run(username, password, admin).lastInsertRowid;
+    const newId = createUser.run(username, password, admin).lastInsertRowid;
+    return getUserById(newId);
   } catch (error) {
-    return 0
+    return {error: error.code}
   }
 }
 
