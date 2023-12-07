@@ -21,10 +21,10 @@ async function login(username, password = "") {
   }
 }
 
-async function signup(username, password, admin) {
+async function signup(first_name, last_name, username, password, pid, admin) {
   try {
     if(admin == undefined) admin = 0;
-    return repo.createUser(username, password, admin)
+    return repo.createUser(first_name, last_name, username, password, pid, admin)
   } catch(error) {
     return {error: "Something went wrong"}
   }
