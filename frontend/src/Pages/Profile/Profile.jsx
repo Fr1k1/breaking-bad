@@ -1,11 +1,18 @@
+import Button from "../../Components/Button/Button";
+import Input from "../../Components/Input/Input";
+
 const Profile = () => {
   return (
-    <div className="flex p-16 h-screen bg-blue-100">
-      <div className="bg-blue-400 h-fit p-8">
-        <p>ID: 2</p>
-        <p>Username: Marko</p>
-        <p>Password: 12345678</p>
-      </div>
+    <div className="flex justify-center items-center h-full ">
+      <form className="flex flex-col justify-center p-4 bg-yellow-light rounded-lg gap-6 w-96 items-center ">
+        <Input label={"First name"} />
+        <Input label={"Last name"} />
+        <Input label={"Username"} />
+        <Input label={"Password"} />
+        <div className="flex justify-center items-start">
+          <Button>Change profile data</Button>
+        </div>
+      </form>
     </div>
   );
 };
