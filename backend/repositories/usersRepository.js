@@ -37,10 +37,10 @@ async function getUserByPassword(password) {
   }
 }
 
-async function createUser(first_name, last_name, username, password, pid, admin = 0) {
-  const createUser = db.prepare('INSERT INTO users (first_name, last_name, username, password, pid, admin) VALUES (?, ?, ?, ?, ?, ?)');
+async function createUser(first_name, last_name, username, password, pin, admin = 0) {
+  const createUser = db.prepare('INSERT INTO users (first_name, last_name, username, password, pin, admin) VALUES (?, ?, ?, ?, ?, ?)');
   try {
-    const newId = createUser.run(first_name, last_name, username, password, pid, admin).lastInsertRowid;
+    const newId = createUser.run(first_name, last_name, username, password, pin, admin).lastInsertRowid;
     return getUserById(newId);
   } catch (error) {
     return {error: error.code}

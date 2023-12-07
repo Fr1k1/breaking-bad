@@ -12,8 +12,8 @@ async function login(req, res) {
 }
 
 async function signup(req, res) {
-  const {first_name, last_name, username, password, pid, admin} = req.body;
-  const response = await service.signup(first_name, last_name, username, password, pid, admin);
+  const {first_name, last_name, username, password, pin, admin} = req.body;
+  const response = await service.signup(first_name, last_name, username, password, pin, admin);
   if (response.error != undefined) {
     res.status(401).json(response)
   } else {
