@@ -3,7 +3,7 @@ import Input from "../../Components/Input/Input";
 
 const Profile = () => {
   return (
-    <div className="flex justify-center items-center h-screen   ">
+    <div className="flex justify-center items-center h-full ">
       <form className="flex flex-col justify-center p-4 bg-yellow-light rounded-lg gap-6 w-96 items-center ">
         <Input label={"First name"} />
         <Input label={"Last name"} />
