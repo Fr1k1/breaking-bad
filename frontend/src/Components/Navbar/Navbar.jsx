@@ -8,7 +8,7 @@ const Navbar = () => {
           to="/"
           className="text-white text-3xl font-bold font-heading hover:text-gray-300"
         >
-          Your Logo
+          Breaking bad
         </Link>
         <ul className="flex gap-6">
           <li>
