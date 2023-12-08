@@ -30,15 +30,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Poslal budem", userData);
-
     const response = await LoginUser({
       username: userData.username,
       password: userData.password,
     });
 
     if (response) {
+      console.log(response);
+
+      document.cookie = `data=${JSON.stringify(response.user)};`;
+      localStorage.setItem("is-admin", response.user.admin);
       navigate("/");
     } else {
       //console.log("Neuspjesni login");
