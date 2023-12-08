@@ -49,6 +49,7 @@ async function createUser(first_name, last_name, username, password, pin, admin 
 
 module.exports = {
   getUsers,
+  getUserById,
   createUser,
   getUserByUsername,
   getUserByPassword

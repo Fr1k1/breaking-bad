@@ -7,6 +7,7 @@ async function login(req, res) {
   if (response.error != undefined) {
     res.status(401).json(response)
   } else {
+    res.cookie("user", JSON.stringify(response.user));
     res.json(response);
   }
 }
