@@ -32,11 +32,11 @@ const Register = () => {
   };
 
   const handleFirstnameChange = (e) => {
-    handleInputChange("firstname", e.target.value);
+    handleInputChange("first_name", e.target.value);
   };
 
   const handleLastnameChange = (e) => {
-    handleInputChange("lastname", e.target.value);
+    handleInputChange("last_name", e.target.value);
   };
 
   const handleOibChange = (e) => {
@@ -65,13 +65,13 @@ const Register = () => {
         </h1>
         <Input
           label="Ime"
-          value={userData.firstname}
+          value={userData.first_name}
           onChange={handleFirstnameChange}
           placeholder="Unesi ime"
         />
         <Input
           label="Prezime"
-          value={userData.lastname}
+          value={userData.last_name}
           onChange={handleLastnameChange}
           placeholder="Unesi prezime"
         />

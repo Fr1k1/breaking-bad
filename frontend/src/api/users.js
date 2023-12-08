@@ -47,3 +47,20 @@ export async function addNewUser(userData) {
 
   return responseData;
 }
+
+export async function getUsers() {
+  const response = await fetch(`${api}/users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch users");
+  }
+
+  return responseData;
+}

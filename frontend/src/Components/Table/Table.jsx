@@ -7,23 +7,22 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { getJobs } from "../../api/jobs";
+import { getUsers } from "../../api/users";
 
 const Table = ({ selectedOption }) => {
   const [sorting, setSorting] = useState();
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
-
-  const [users, setUsers] = useState(() => [
-    { id: 1, username: "test", password: "123", admin: 1 },
-    { id: 2, username: "marko", password: "014235", admin: 0 },
-    { id: 3, username: "gaser", password: "789", admin: 0 },
-  ]);
-
+  const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
+
   const fetchData = async () => {
-    const response = await getJobs();
-    setJobs(response);
+    const jobsResponse = await getJobs();
+    setJobs(jobsResponse);
     console.log("Poslovi su", jobs);
+    const usersResponse = await getUsers();
+    setUsers(usersResponse);
+    console.log("Useri su", users);
   };
 
   useEffect(() => {
@@ -50,6 +49,14 @@ const Table = ({ selectedOption }) => {
   const columnsUsers = [
     columnHelper.accessor("username", {
       header: () => <span>Korisnicko ime</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("first_name", {
+      header: () => <span>Ime</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("last_name", {
+      header: () => <span>Prezime</span>,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("password", {
