@@ -1,17 +1,22 @@
+import { useEffect, useState } from "react";
 import JobItem from "../../Components/JobItem/JobItem";
+import { getJobs } from "../../api/jobs";
 import "./Homepage.scss";
 
 const Homepage = () => {
+  const [jobs, setJobs] = useState([]); //empty array!!!
+  const fetchData = async () => {
+    const response = await getJobs();
+    setJobs(response);
+    console.log("Poslovi su", jobs);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="grid grid-cols-4 gap-4 max-w-screen-xl mx-auto smh">
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
+      {jobs.map((job) => (job ? <JobItem key={job.id} job={job} /> : null))}
     </div>
   );
 };
