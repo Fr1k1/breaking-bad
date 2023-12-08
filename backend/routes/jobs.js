@@ -8,4 +8,6 @@ router.get("/:id", controller.getJobById);
 
 router.post("/", controller.createJob);
 
+router.delete("/:id", controller.deleteJobById);
+
 module.exports = router;

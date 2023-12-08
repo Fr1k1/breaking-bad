@@ -6,7 +6,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { getJobs } from "../../api/jobs";
+import { deleteJobById, getJobs } from "../../api/jobs";
 import { getUsers } from "../../api/users";
 
 const Table = ({ selectedOption }) => {
@@ -34,13 +34,17 @@ const Table = ({ selectedOption }) => {
     setColumns(selectedOption == "users" ? columnsUsers : columnsJobs);
   }, [selectedOption, users, jobs]);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     let filtered;
     if (selectedOption == "users") {
       filtered = users.filter((el) => el.id !== id);
     } else {
-      filtered = jobs.filter((el) => el.id !== id);
+      console.log(id);
+
+      const jobsResponse = await deleteJobById(id);
+      console.log(jobsResponse);
     }
+    fetchData();
     selectedOption == "users" ? setUsers(filtered) : setJobs(filtered);
   };
 
@@ -81,6 +85,10 @@ const Table = ({ selectedOption }) => {
   ];
 
   const columnsJobs = [
+    columnHelper.accessor("job.id", {
+      header: () => <span>ID</span>,
+      cell: (info) => info.getValue(),
+    }),
     columnHelper.accessor("job.title", {
       header: () => <span>Naziv posla</span>,
       cell: (info) => info.getValue(),
@@ -110,7 +118,7 @@ const Table = ({ selectedOption }) => {
       cell: (row) => (
         <button
           className="bg-red-600 text-white font-medium py-2 px-8 rounded-full"
-          onClick={() => handleDelete(row.row.original.id)}
+          onClick={() => handleDelete(row.row.original.job.id)}
         >
           Izbriši
         </button>

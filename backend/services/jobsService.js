@@ -1,10 +1,10 @@
-const repo = require("../repositories/jobsRepository")
+const repo = require("../repositories/jobsRepository");
 
 async function getJobsByUserId(userId) {
   try {
     return repo.getJobsByUserId(userId);
   } catch (error) {
-    return []
+    return [];
   }
 }
 
@@ -20,30 +20,52 @@ async function getAllJobs() {
   try {
     return repo.getJobs();
   } catch (error) {
-    return []
+    return [];
   }
 }
 
 async function createJob(title, description, start_date, duration, creator_id) {
   try {
-    return repo.createJob(title, description, start_date, duration, creator_id)
+    return repo.createJob(title, description, start_date, duration, creator_id);
   } catch (error) {
-    return {error: "Couldn't create job"}
+    return { error: "Couldn't create job" };
   }
 }
 
-async function updateJob(id, title, description, start_date, duration, creator_id) {
+async function updateJob(
+  id,
+  title,
+  description,
+  start_date,
+  duration,
+  creator_id
+) {
   try {
-    return repo.updateJob(id, title, description, start_date, duration, creator_id)
+    return repo.updateJob(
+      id,
+      title,
+      description,
+      start_date,
+      duration,
+      creator_id
+    );
   } catch (error) {
-    return {error: "Couldn't update job"}
+    return { error: "Couldn't update job" };
   }
 }
 
+async function deleteJobById(id) {
+  try {
+    return repo.deleteJobById(id);
+  } catch (error) {
+    return { error: "Couldn't delete job" };
+  }
+}
 
 module.exports = {
   getJobsByUserId,
   createJob,
   getAllJobs,
-  getJobById
-}
+  getJobById,
+  deleteJobById,
+};

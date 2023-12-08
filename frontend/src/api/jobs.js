@@ -33,3 +33,17 @@ export async function getJobById(id) {
 
   return responseData;
 }
+
+export async function deleteJobById(id) {
+  const response = await fetch(`${api}/jobs/${id}`, {
+    method: "DELETE",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to delete job with provided id");
+  }
+
+  return responseData;
+}
