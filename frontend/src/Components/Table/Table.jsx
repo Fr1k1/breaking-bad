@@ -6,6 +6,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { getJobs } from "../../api/jobs";
 
 const Table = ({ selectedOption }) => {
   const [sorting, setSorting] = useState();
@@ -18,10 +19,16 @@ const Table = ({ selectedOption }) => {
     { id: 3, username: "gaser", password: "789", admin: 0 },
   ]);
 
-  const [jobs, setJobs] = useState(() => [
-    { id: 1, nazivposla: "posap" },
-    { id: 2, nazivposla: "kopanje" },
-  ]);
+  const [jobs, setJobs] = useState([]);
+  const fetchData = async () => {
+    const response = await getJobs();
+    setJobs(response);
+    console.log("Poslovi su", jobs);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     selectedOption == "users" ? setData(users) : setData(jobs);
@@ -67,9 +74,29 @@ const Table = ({ selectedOption }) => {
   ];
 
   const columnsJobs = [
-    columnHelper.accessor("nazivposla", {
+    columnHelper.accessor("job.title", {
       header: () => <span>Naziv posla</span>,
       cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("job.start_date", {
+      header: () => <span>Datum početka</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("job.duration", {
+      header: () => <span>Trajanje (min)</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("job.description", {
+      header: () => <span>Opis</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("job.creator_id", {
+      header: () => <span>ID kreatora</span>,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("job.employee_id", {
+      header: () => <span>ID radnika</span>,
+      cell: (info) => (info.getValue() ? info.getValue() : "-"),
     }),
     columnHelper.display({
       id: "actions",
