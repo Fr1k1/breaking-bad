@@ -3,6 +3,7 @@ import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router";
 import { LoginUser } from "../../api/users";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,26 +45,34 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen   ">
+    <div className="flex justify-center items-center h-screen bg-white-custom">
       <form
-        className="flex flex-col justify-center p-4 bg-yellow-light rounded-lg gap-6 w-96 items-center "
+        className="flex flex-col justify-center p-8 bg-white-custom rounded-lg shadow-xl border-2 border-yellow-light w-96"
         onSubmit={handleSubmit}
       >
+        <h1 className="text-3xl font-bold text-yellow-dark mb-6 text-center">
+          Login
+        </h1>
         <Input
-          label={"Username"}
+          label="Korisničko ime"
           value={userData.username}
           onChange={handleUsernameChange}
-          placeholder={"Unesi korisnicko ime"}
+          placeholder="Unesi korisničko ime"
         />
         <Input
-          label={"Password"}
+          label="Lozinka"
           value={userData.password}
           onChange={handlePasswordChange}
-          placeholder={"Unesi lozinku"}
+          placeholder="Unesi lozinku"
+          type="password"
         />
-        <div className="flex justify-center items-start">
-          <Button>Login</Button>
-        </div>
+        <Button type="submit">Login</Button>
+        <Link
+          to="/register"
+          className="text-center pt-4 text-yellow-dark font-medium"
+        >
+          Nemaš račun?
+        </Link>
       </form>
     </div>
   );

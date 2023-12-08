@@ -3,6 +3,7 @@ import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
 import { useState } from "react";
 import { addNewUser } from "../../api/users";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -54,44 +55,52 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen  ">
+    <div className="flex justify-center items-center h-screen bg-white-custom">
       <form
-        className="flex flex-col justify-center p-4 bg-yellow-light rounded-lg gap-6 w-96 items-center "
+        className="flex flex-col justify-center p-8 bg-white-custom rounded-lg shadow-xl border-2 border-yellow-light w-96"
         onSubmit={handleSubmit}
       >
+        <h1 className="text-3xl font-bold text-yellow-dark mb-6 text-center">
+          Registracija
+        </h1>
         <Input
-          label={"First name"}
+          label="Ime"
           value={userData.firstname}
           onChange={handleFirstnameChange}
-          placeholder={"Unesi  ime"}
+          placeholder="Unesi ime"
         />
         <Input
-          label={"Last name"}
+          label="Prezime"
           value={userData.lastname}
           onChange={handleLastnameChange}
-          placeholder={"Unesi prezime"}
+          placeholder="Unesi prezime"
         />
         <Input
-          label={"Username"}
+          label="Korisničko ime"
           value={userData.username}
           onChange={handleUsernameChange}
-          placeholder={"Unesi  korisnicko ime"}
+          placeholder="Unesi korisničko ime"
         />
         <Input
-          label={"OIB"}
+          label="OIB"
           value={userData.oib}
           onChange={handleOibChange}
-          placeholder={"Unesi  oib"}
+          placeholder="Unesi OIB"
         />
         <Input
-          label={"Password"}
+          label="Lozinka"
           value={userData.password}
           onChange={handlePasswordChange}
-          placeholder={"Unesi  lozinku"}
+          placeholder="Unesi lozinku"
+          type="password"
         />
-        <div className="flex justify-center items-start">
-          <Button>Register</Button>
-        </div>
+        <Button type="submit">Registriraj se</Button>
+        <Link
+          to="/login"
+          className="text-center pt-4 text-yellow-dark font-medium"
+        >
+          Već imaš račun?
+        </Link>
       </form>
     </div>
   );

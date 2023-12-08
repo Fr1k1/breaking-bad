@@ -10,7 +10,7 @@ const JobItem = ({ job }) => {
         <h2 className="text-xl font-bold text-grey-custom">{title}</h2>
         <p className="text-gray-600">{description}</p>
         <p className="text-sm text-grey-custom">
-          Creator: {job.creator.first_name + " " + job.creator.last_name}
+          Kreator: {job.creator.first_name + " " + job.creator.last_name}
         </p>
       </div>
     </Link>

@@ -9,15 +9,14 @@ const Input = ({
   defaultValue,
 }) => {
   return (
-    <div className="flex gap-2 flex-col">
-      {label && <label className="">{label}</label>}
-
+    <div className="flex flex-col mb-4">
+      {label && <label className="text-grey-custom">{label}</label>}
       <input
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={defaultValue}
-        className="flex bg-white-200 rounded-lg p-1"
+        className="bg-white-custom border border-grey-middle rounded-lg py-2 px-3 focus:outline-none focus:border-yellow-light transition duration-300"
       />
     </div>
   );
