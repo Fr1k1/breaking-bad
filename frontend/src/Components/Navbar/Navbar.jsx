@@ -52,7 +52,7 @@ const Navbar = () => {
 
           {isLoggedin ? (
             <Link to="/dodaj-posao">
-              <label className="cursor-pointer p-2 border border-white rounded w-32 text-center bg-red-600 text-white">
+              <label className="cursor-pointer p-2 border border-white rounded w-32 text-center bg-yellow-light text-white font-bold px-4">
                 <button className="" />
                 Dodaj posao
               </label>
