@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isLoggedin, setIsLoggedin] = useState(
+    localStorage.getItem("user_id") !== null
+  );
+
+  useEffect(() => {
+    // Update the state when local storage changes
+    setIsLoggedin(localStorage.getItem("user_id") !== null);
+  }, [localStorage.getItem("user_id")]);
   return (
     <nav className="bg-gray-800 py-4">
       <div className="container mx-auto flex justify-between items-center max-w-7xl">
@@ -40,6 +49,17 @@ const Navbar = () => {
               Profil
             </Link>
           </li>
+
+          {isLoggedin ? (
+            <Link to="/dodaj-posao">
+              <label className="cursor-pointer p-2 border border-white rounded w-32 text-center bg-red-600 text-white">
+                <button className="" />
+                Dodaj posao
+              </label>
+            </Link>
+          ) : (
+            <></>
+          )}
         </ul>
       </div>
     </nav>
