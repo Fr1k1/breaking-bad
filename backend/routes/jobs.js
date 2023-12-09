@@ -10,4 +10,6 @@ router.post("/", controller.createJob);
 
 router.delete("/:id", controller.deleteJobById);
 
+router.patch("/:id", controller.updateJobById)
+
 module.exports = router;

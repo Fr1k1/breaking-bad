@@ -47,8 +47,17 @@ async function getAllUsers() {
   }
 }
 
+async function deleteUserById(id) {
+  try {
+    return repo.deleteUserById(id);
+  } catch (error) {
+    return { error: "Couldn't delete user" };
+  }
+}
+
 module.exports = {
   login,
   signup,
   getAllUsers,
+  deleteUserById,
 };

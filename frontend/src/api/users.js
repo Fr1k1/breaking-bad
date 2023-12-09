@@ -64,3 +64,17 @@ export async function getUsers() {
 
   return responseData;
 }
+
+export async function deleteUserById(id) {
+  const response = await fetch(`${api}/users/${id}`, {
+    method: "DELETE",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to delete user with provided id");
+  }
+
+  return responseData;
+}
