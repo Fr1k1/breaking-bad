@@ -1,5 +1,5 @@
 const Database = require("better-sqlite3");
-const db = new Database("database.db", {verbose: console.log});
+const db = new Database("database.db", { verbose: console.log });
 const userRepository = require("./usersRepository");
 
 async function getJobs() {
@@ -10,7 +10,7 @@ async function getJobs() {
       jobs.map(async (job) => {
         const creator = await userRepository.getUserById(job.creator_id);
         const employee = await userRepository.getUserById(job.employee_id);
-        return {job: job, creator: creator, employee: employee};
+        return { job: job, creator: creator, employee: employee };
       })
     );
   } catch (error) {
@@ -26,7 +26,7 @@ async function getJobsByUserId(userId) {
       jobs.map((job) => {
         const creator = userRepository.getUserById(job.creator_id);
         const employee = userRepository.getUserById(job.employee_id);
-        return {job: job, creator: creator, employee: employee};
+        return { job: job, creator: creator, employee: employee };
       })
     );
   } catch (error) {
@@ -40,7 +40,7 @@ async function getJobById(id) {
     let job = getJob.get(id);
     const creator = await userRepository.getUserById(job.creator_id);
     const employee = await userRepository.getUserById(job.employee_id);
-    return {job: job, creator: creator, employee: employee};
+    return { job: job, creator: creator, employee: employee };
   } catch (error) {
     return undefined;
   }
@@ -50,9 +50,9 @@ async function deleteJobById(id) {
   const deleteJob = db.prepare("DELETE FROM jobs WHERE id = ?");
   try {
     const result = deleteJob.run(id);
-    return {status: 200, message: `Deleted job with ID ${id}`};
+    return { status: 200, message: `Deleted job with ID ${id}` };
   } catch (error) {
-    return {error: error.code};
+    return { error: error.code };
   }
 }
 
@@ -70,7 +70,7 @@ async function createJob(title, description, start_date, duration, creator_id) {
     ).lastInsertRowid;
     return getJobById(newId);
   } catch (error) {
-    return {error: error.code};
+    return { error: error.code };
   }
 }
 
@@ -83,7 +83,7 @@ async function updateJob(
   employee_id
 ) {
   const updateJob = db.prepare(
-    "UPDATE jobs SET title = ?, description = ?, start_date = ?, duration = ?, employee_id = ? WHERE id = ?"
+    "UPDATE jobs SET title = COALESCE(?, title), description = COALESCE(?, description), start_date = COALESCE(?, start_date), duration = COALESCE(?, duration), employee_id = COALESCE(?, employee_id) WHERE id = ?"
   );
   try {
     const info = await updateJob.run(
@@ -96,7 +96,7 @@ async function updateJob(
     );
     return info.changes;
   } catch (error) {
-    return {error: error.code};
+    return { error: error.code };
   }
 }
 

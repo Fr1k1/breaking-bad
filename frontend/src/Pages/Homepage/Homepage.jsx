@@ -8,7 +8,7 @@ const Homepage = () => {
   const fetchData = async () => {
     const response = await getJobs();
     setJobs(response);
-    console.log("Poslovi su", jobs);
+    console.log("Dostupni poslovi su", jobs);
   };
 
   useEffect(() => {
@@ -16,7 +16,9 @@ const Homepage = () => {
   }, []);
   return (
     <div className="grid grid-cols-4 gap-4 max-w-screen-xl mx-auto smh">
-      {jobs.map((job) => (job ? <JobItem key={job.id} job={job} /> : null))}
+      {jobs.map((job) =>
+        job && !job.employee ? <JobItem key={job.id} job={job} /> : null
+      )}
     </div>
   );
 };

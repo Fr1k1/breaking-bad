@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./JobDetails.scss"; // If you have additional styles
-import { getJobById } from "../../api/jobs";
+import { getJobById, reserveJob } from "../../api/jobs";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const JobDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [job, setJob] = useState({ job: {}, creator: {} });
@@ -16,6 +18,28 @@ const JobDetails = () => {
     } catch (error) {
       console.error("Error fetching job details:", error);
     }
+  };
+
+  const handleReserve = async () => {
+    const cookie = getCookie("data");
+    console.log(cookie);
+
+    const employeeId = JSON.parse(cookie).id;
+    console.log(employeeId);
+
+    try {
+      const response = await reserveJob(employeeId, id);
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.error("Error while creating reservation:", error);
+    }
+  };
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
   };
 
   useEffect(() => {
@@ -44,7 +68,10 @@ const JobDetails = () => {
               Kreirao: {job.creator.first_name} {job.creator.last_name}
             </p>
           </div>
-          <button className="bg-yellow-light hover:bg-yellow-dark text-white  font-bold text-xl py-2 px-8 mt-8 rounded ">
+          <button
+            className="bg-yellow-light hover:bg-yellow-dark text-white  font-bold text-xl py-2 px-8 mt-8 rounded"
+            onClick={handleReserve}
+          >
             Rezerviraj
           </button>
         </>
