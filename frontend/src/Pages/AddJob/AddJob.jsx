@@ -9,7 +9,8 @@ const AddJob = () => {
     title: "",
     description: "",
     start_date: "",
-    duration: "-",
+    duration: "",
+    creator_id: localStorage.getItem("user_id"),
   });
 
   const handleInputChange = (name, value) => {

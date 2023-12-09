@@ -49,19 +49,11 @@ export async function deleteJobById(id) {
 }
 
 export async function addNewJob(jobData) {
-  const cookieValue = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("user="))
-    ?.split("=")[1];
-
-  console.log("Kolacic je", cookieValue);
   const response = await fetch(`${api}/jobs`, {
     method: "POST",
     headers: {
-      Cookie: `user=${cookieValue}`,
-      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
     },
-    credentials: "include",
     body: JSON.stringify(jobData),
   });
 

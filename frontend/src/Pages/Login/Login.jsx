@@ -40,6 +40,8 @@ const Login = () => {
 
       document.cookie = `data=${JSON.stringify(response.user)};`;
       localStorage.setItem("is-admin", response.user.admin);
+      localStorage.setItem("user_id", response.user.id);
+
       navigate("/");
     } else {
       //console.log("Neuspjesni login");
