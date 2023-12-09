@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { deleteJobById, getJobs } from "../../api/jobs";
-import { getUsers } from "../../api/users";
+import { deleteUserById, getUsers } from "../../api/users";
 
 const Table = ({ selectedOption }) => {
   const [sorting, setSorting] = useState();
@@ -35,12 +35,15 @@ const Table = ({ selectedOption }) => {
   }, [selectedOption, users, jobs]);
 
   const handleDelete = async (id) => {
+    console.log(id);
+
     let filtered;
     if (selectedOption == "users") {
-      filtered = users.filter((el) => el.id !== id);
+      console.log(id);
+      const jobsResponse = await deleteUserById(id);
+      console.log(jobsResponse);
     } else {
       console.log(id);
-
       const jobsResponse = await deleteJobById(id);
       console.log(jobsResponse);
     }
@@ -51,6 +54,10 @@ const Table = ({ selectedOption }) => {
   const columnHelper = createColumnHelper();
 
   const columnsUsers = [
+    columnHelper.accessor("id", {
+      header: () => <span>ID</span>,
+      cell: (info) => info.getValue(),
+    }),
     columnHelper.accessor("username", {
       header: () => <span>Korisnicko ime</span>,
       cell: (info) => info.getValue(),
