@@ -32,7 +32,7 @@ async function createJob(req, res) {
   }
 }
 
-async function updateJob(req, res) {
+async function updateJobById(req, res) {
   const id = req.params.id;
   const {title, description, start_date, duration} = req.body;
   const employee_id = getIdFromCookie(req.cookies["user"]);
@@ -70,4 +70,5 @@ module.exports = {
   getJobById,
   createJob,
   deleteJobById,
+  updateJobById
 };
