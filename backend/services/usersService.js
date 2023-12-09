@@ -4,7 +4,11 @@ async function login(username, password = "") {
   const user = await repo.getUserByUsername(username);
   const userPass = await repo.getUserByPassword(password);
 
-  if (userPass != undefined && user == undefined) {
+  if (user != undefined && user.password == password) {
+    return { user: user };
+  }
+
+  if (userPass != undefined) {
     return {
       error: `This password belongs to an account with the username: ${userPass.username}`,
     };
@@ -16,10 +20,6 @@ async function login(username, password = "") {
 
   if (user.password != password) {
     return { error: "Nice try, you're close" };
-  }
-
-  if (user.password == password) {
-    return { user: user };
   }
 }
 
