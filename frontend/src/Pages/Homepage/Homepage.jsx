@@ -16,8 +16,12 @@ const Homepage = () => {
   }, []);
   return (
     <div className="grid grid-cols-4 gap-4 max-w-screen-xl mx-auto smh">
-      {jobs.map((job, index) =>
-        job && !job.employee ? <JobItem key={index} job={job} /> : null
+      {jobs.length > 0 ? (
+        jobs.map((job, index) =>
+          job && !job.employee ? <JobItem key={index} job={job} /> : null
+        )
+      ) : (
+        <div>Nema poslova</div>
       )}
     </div>
   );
