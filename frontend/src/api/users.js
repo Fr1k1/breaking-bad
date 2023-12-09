@@ -78,3 +78,29 @@ export async function deleteUserById(id) {
 
   return responseData;
 }
+
+export async function updateUser(userId, userData) {
+  console.log(userData);
+  console.log(userId);
+
+  const response = await fetch(`${api}/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+      username: userData.username,
+      password: userData.password,
+    }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to update user with provided id");
+  }
+
+  return responseData;
+}

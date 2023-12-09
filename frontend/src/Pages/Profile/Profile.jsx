@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
+import { updateUser } from "../../api/users";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -48,13 +49,21 @@ const Profile = () => {
     }
   }, []);
 
-  const handleSubmit = () => {
-    console.log("save");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateUser(user.id, user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="flex justify-center items-center h-full ">
-      <form className="flex flex-col justify-center p-8 bg-white-custom rounded-lg shadow-xl border-2 border-yellow-light w-96">
+      <form
+        className="flex flex-col justify-center p-8 bg-white-custom rounded-lg shadow-xl border-2 border-yellow-light w-96"
+        onSubmit={handleSubmit}
+      >
         <h1 className="text-3xl font-bold text-yellow-dark mb-6 text-center">
           Profil
         </h1>
@@ -80,7 +89,7 @@ const Profile = () => {
         />
 
         <div className="flex justify-center items-start">
-          <Button onClick={handleSubmit}>Spremi promjene</Button>
+          <Button>Spremi promjene</Button>
         </div>
       </form>
     </div>
