@@ -47,6 +47,14 @@ async function getAllUsers() {
   }
 }
 
+async function updateUserById(id, first_name, last_name, username, password, pin, admin) {
+  try {
+    return repo.updateUserById(id, first_name, last_name, username, password, pin, admin);
+  } catch (error) {
+    return { error: "Couldn't update user" };
+  }
+}
+
 async function deleteUserById(id) {
   try {
     return repo.deleteUserById(id);
@@ -60,4 +68,5 @@ module.exports = {
   signup,
   getAllUsers,
   deleteUserById,
+  updateUserById
 };
