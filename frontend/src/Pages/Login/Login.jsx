@@ -65,7 +65,6 @@ const Login = () => {
           value={userData.password}
           onChange={handlePasswordChange}
           placeholder="Unesi lozinku"
-          type="password"
         />
         <Button type="submit">Login</Button>
         <Link

@@ -7,6 +7,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Homepage from "./Pages/Homepage/Homepage";
 import MainLayout from "./Components/MainLayout/MainLayout";
 import JobDetails from "./Pages/JobDetails/JobDetails";
+import AddJob from "./Pages/AddJob/AddJob";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/posao/:id" element={<JobDetails />} />
+          <Route path="/dodaj-posao" element={<AddJob />} />
         </Route>
       </Routes>
     </>
