@@ -16,8 +16,7 @@ async function getJobById(req, res) {
 }
 
 async function createJob(req, res) {
-  const { title, description, start_date, duration } = req.body;
-  const creator_id = getIdFromCookie(req.cookies["user"]);
+  const {title, description, start_date, duration, creator_id} = req.body;
   const response = await service.createJob(
     title,
     description,

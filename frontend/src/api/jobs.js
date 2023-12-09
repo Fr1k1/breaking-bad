@@ -48,6 +48,34 @@ export async function deleteJobById(id) {
   return responseData;
 }
 
+export async function addNewJob(jobData) {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("user="))
+    ?.split("=")[1];
+
+  console.log("Kolacic je", cookieValue);
+  const response = await fetch(`${api}/jobs`, {
+    method: "POST",
+    headers: {
+      Cookie: `user=${cookieValue}`,
+      "Access-Control-Allow-Origin": "*",
+    },
+    credentials: "include",
+    body: JSON.stringify(jobData),
+  });
+
+  const responseData = await response.json();
+
+  console.log("Uspjesno dodavanje posla");
+
+  if (!response.ok) {
+    throw new Error("Dodavanje posla nije uspjelo");
+  }
+
+  return responseData;
+}
+
 export async function reserveJob(employeeId, jobId) {
   console.log(employeeId);
 

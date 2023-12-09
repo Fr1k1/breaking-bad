@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Table from "../../Components/Table/Table";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("users");
@@ -11,9 +12,9 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto mt-8">
       <h2 className="font-bold text-2xl">
-        Popis {selectedOption == "users" ? "korisnika" : "poslova"}
+        Popis {selectedOption === "users" ? "korisnika" : "poslova"}
       </h2>
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-4 mt-8 items-center">
         <label
           className={`cursor-pointer p-2 border border-yellow-dark rounded w-32 text-center ${
             selectedOption === "users"
@@ -47,6 +48,27 @@ const Dashboard = () => {
           />
           Poslovi
         </label>
+
+        {selectedOption === "jobs" && (
+          <Link to="/dodaj-posao">
+            <label
+              className={`cursor-pointer p-2 border border-yellow-light rounded w-32 text-center ${
+                selectedOption === "jobs"
+                  ? "bg-red-600 text-white"
+                  : "text-yellow-light"
+              }`}
+            >
+              <input
+                type="radio"
+                value="jobs"
+                checked={selectedOption === "jobs"}
+                onChange={() => handleOptionChange("jobs")}
+                className="hidden"
+              />
+              Dodaj posao
+            </label>
+          </Link>
+        )}
       </div>
       <Table selectedOption={selectedOption} />
     </div>

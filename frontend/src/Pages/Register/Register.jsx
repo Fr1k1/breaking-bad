@@ -92,7 +92,6 @@ const Register = () => {
           value={userData.password}
           onChange={handlePasswordChange}
           placeholder="Unesi lozinku"
-          type="password"
         />
         <Button type="submit">Registriraj se</Button>
         <Link
