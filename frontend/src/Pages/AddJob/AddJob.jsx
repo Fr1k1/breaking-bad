@@ -41,7 +41,6 @@ const AddJob = () => {
     try {
       console.log("Novi posao je", job);
       await addNewJob(job);
-      console.log("Uspjesno dodan novi user");
     } catch (error) {
       console.log(error);
     }
