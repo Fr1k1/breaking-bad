@@ -42,5 +42,13 @@ createJob.run(
   2
 );
 
+createJob.run(
+  "Pranje auta",
+  "Trebam hot crnca misicavog da mi izglanca auto",
+  "14.09.2023.",
+  45,
+  1
+);
+
 console.log(getUsers.all());
 console.log(db.prepare("SELECT * FROM jobs").all());

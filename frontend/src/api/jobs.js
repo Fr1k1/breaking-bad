@@ -67,3 +67,23 @@ export async function addNewJob(jobData) {
 
   return responseData;
 }
+
+export async function reserveJob(employeeId, jobId) {
+  console.log(employeeId);
+
+  const response = await fetch(`${api}/jobs/${jobId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ employee_id: employeeId }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Failed to delete job with provided id");
+  }
+
+  return responseData;
+}
