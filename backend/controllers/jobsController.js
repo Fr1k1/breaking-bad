@@ -9,14 +9,14 @@ async function getJobById(req, res) {
   const id = req.params.id;
   const response = await service.getJobById(id);
   if (response == undefined) {
-    res.status(404).json({ error: "Couldn't find job" });
+    res.status(404).json({error: "Couldn't find job"});
   } else {
     res.json(response);
   }
 }
 
 async function createJob(req, res) {
-  const { title, description, start_date, duration } = req.body;
+  const {title, description, start_date, duration} = req.body;
   const creator_id = getIdFromCookie(req.cookies["user"]);
   const response = await service.createJob(
     title,
@@ -32,11 +32,30 @@ async function createJob(req, res) {
   }
 }
 
+async function updateJob(req, res) {
+  const id = req.params.id;
+  const {title, description, start_date, duration} = req.body;
+  const employee_id = getIdFromCookie(req.cookies["user"]);
+  const response = await service.updateJob(
+    id,
+    title,
+    description,
+    start_date,
+    duration,
+    employee_id
+  );
+  if (response == undefined) {
+    res.status(500).json({error: "Error deleting job"});
+  } else {
+    res.json(response);
+  }
+}
+
 async function deleteJobById(req, res) {
   const id = req.params.id;
   const response = await service.deleteJobById(id);
   if (response == undefined) {
-    res.status(500).json({ error: "Error deleting job" });
+    res.status(500).json({error: "Error deleting job"});
   } else {
     res.json(response);
   }

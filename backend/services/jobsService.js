@@ -38,7 +38,7 @@ async function updateJob(
   description,
   start_date,
   duration,
-  creator_id
+  employee_id
 ) {
   try {
     return repo.updateJob(
@@ -47,7 +47,7 @@ async function updateJob(
       description,
       start_date,
       duration,
-      creator_id
+      employee_id
     );
   } catch (error) {
     return { error: "Couldn't update job" };
